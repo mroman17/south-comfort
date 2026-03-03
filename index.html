@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>South Comfort | Reliable Home Care Hub</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Oswald:wght@400;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    
+    <!-- LeadConnector Chat Widget Script -->
+    <script 
+      src="https://beta.leadconnectorhq.com/loader.js"  
+      data-resources-url="https://beta.leadconnectorhq.com/chat-widget/loader.js" 
+      data-widget-id="699d8bf66e60099b9a3d81a9"> 
+    </script>
+
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#004A8D",
+                        "accent": "#E31E24",
+                        "navy": "#1e293b",
+                        "ice-blue": "#f0f9ff",
+                        "slate-blue": "#f8fafc",
+                        "background-light": "#f8f6f5",
+                    },
+                    fontFamily: {
+                        "sans": ["Inter", "sans-serif"],
+                        "heading": ["Oswald", "sans-serif"],
+                        "outfit": ["Outfit", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        /* Custom Components - Standard CSS */
+        .glass-header {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 74, 141, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            padding: 1rem;
+        }
+        @media (min-width: 1024px) {
+            .glass-header {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+        }
+        .bento-card {
+            background-color: white;
+            border: 1px solid rgba(30, 41, 59, 0.1);
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            transition: all 0.2s;
+            border-radius: 24px;
+            overflow: hidden;
+        }
+        @media (min-width: 1024px) {
+            .bento-card {
+                border-radius: 0.75rem;
+            }
+        }
+        .utility-rail {
+            display: none;
+        }
+        @media (min-width: 1024px) {
+            .utility-rail {
+                display: block;
+                position: sticky;
+                top: 7rem;
+                height: fit-content;
+                width: 300px;
+            }
+        }
+        .mobile-bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #1e293b;
+            color: white;
+            z-index: 60;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 0.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        @media (min-width: 1024px) {
+            .mobile-bottom-nav {
+                display: none;
+            }
+        }
+        .touch-target {
+            min-height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.1s;
+        }
+        .touch-target:active {
+            transform: translateY(4px);
+        }
+        .btn-feedback {
+            transition: transform 0.1s;
+        }
+        .btn-feedback:active {
+            transform: translateY(4px);
+        }
+
+        /* Aggressive Hide LeadConnector Chat Widget Bubble on Mobile */
+        @media (max-width: 1023px) {
+            #chat-widget-container,
+            .lc-widget-button,
+            #lc-chat-widget,
+            iframe[id*="chat-widget"],
+            iframe[src*="leadconnector"],
+            div[class*="chat-widget"],
+            div[id*="chat-widget"],
+            .chat-widget-wrapper,
+            #chat-widget-wrapper {
+                display: none !important;
+                visibility: hidden !important;
+                opacity: 0 !important;
+                pointer-events: none !important;
+                z-index: -9999 !important;
+                position: fixed !important;
+                bottom: -1000px !important;
+                right: -1000px !important;
+            }
+
+            /* Show when chat is active */
+            body.chat-active #chat-widget-container,
+            body.chat-active .lc-widget-button,
+            body.chat-active #lc-chat-widget,
+            body.chat-active iframe[id*="chat-widget"],
+            body.chat-active iframe[src*="leadconnector"],
+            body.chat-active div[class*="chat-widget"],
+            body.chat-active div[id*="chat-widget"],
+            body.chat-active .chat-widget-wrapper,
+            body.chat-active #chat-widget-wrapper {
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                pointer-events: auto !important;
+                z-index: 9999 !important;
+                bottom: 0 !important;
+                right: 0 !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-background-light font-sans text-navy selection:bg-primary/30 pb-20 lg:pb-0">
+<header class="glass-header">
+<div class="max-w-[1440px] mx-auto flex items-center justify-between">
+<div class="flex items-center">
+<img src="https://lh3.googleusercontent.com/d/1M6VRz9XpHbFlNbLdU0Wf713WrhgL2U5t" alt="South Comfort Logo" class="h-16 lg:h-18 w-auto object-contain" referrerPolicy="no-referrer" />
+</div>
+<nav class="hidden lg:flex items-center gap-8">
+<div class="relative group">
+<button class="flex items-center gap-1 text-lg font-bold hover:text-primary transition-colors uppercase tracking-wide py-4">
+                    Services
+                    <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<div class="absolute top-full left-0 hidden group-hover:block w-64 bg-white border border-slate-100 shadow-xl rounded-xl py-4 z-50">
+<a class="block px-6 py-3 hover:bg-slate-50 hover:text-primary font-bold transition-colors" href="#">Air Conditioning Repair</a>
+<a class="block px-6 py-3 hover:bg-slate-50 hover:text-primary font-bold transition-colors" href="#">Air Conditioning Installation</a>
+<a class="block px-6 py-3 hover:bg-slate-50 hover:text-primary font-bold transition-colors" href="#">Heat Pump Service</a>
+<a class="block px-6 py-3 hover:bg-slate-50 hover:text-primary font-bold transition-colors" href="#">Furnace Repair</a>
+<a class="block px-6 py-3 hover:bg-slate-50 hover:text-primary font-bold transition-colors" href="#">Full HVAC Maintenance</a>
+</div>
+</div>
+<div class="relative group">
+<button class="flex items-center gap-1 text-lg font-bold hover:text-primary transition-colors uppercase tracking-wide py-4">
+                    Service Areas
+                    <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<div class="absolute top-full left-0 hidden group-hover:block w-56 bg-white border border-slate-100 shadow-xl rounded-xl py-4 z-50">
+<a class="block px-6 py-3 hover:bg-slate-50 hover:text-primary font-bold transition-colors" href="#">Pelham</a>
+<a class="block px-6 py-3 hover:bg-slate-50 hover:text-primary font-bold transition-colors" href="#">Helena</a>
+<a class="block px-6 py-3 hover:bg-slate-50 hover:text-primary font-bold transition-colors" href="#">Alabaster</a>
+<a class="block px-6 py-3 hover:bg-slate-50 hover:text-primary font-bold transition-colors" href="#">Mountain Brook</a>
+<a class="block px-6 py-3 hover:bg-slate-50 hover:text-primary font-bold transition-colors" href="#">Vestavia Hills</a>
+</div>
+</div>
+<a class="text-lg font-bold hover:text-primary transition-colors uppercase tracking-wide" href="#">About</a>
+<a class="text-lg font-bold hover:text-primary transition-colors uppercase tracking-wide" href="#">Contact</a>
+<button class="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg font-bold text-lg shadow-lg shadow-primary/20 btn-feedback ml-4">
+                Get a Quote
+            </button>
+</nav>
+<button class="lg:hidden flex flex-col items-center gap-1 group btn-feedback">
+<span class="material-symbols-outlined text-navy text-3xl">menu</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Menu</span>
+</button>
+</div>
+</header>
+<main class="max-w-[1440px] mx-auto px-4 lg:px-6 py-6 lg:py-10 flex flex-col lg:flex-row gap-6 lg:gap-8">
+<div class="flex-1">
+<div class="grid grid-cols-12 gap-6">
+<section class="col-span-12 bento-card p-6 lg:p-10 bg-gradient-to-br from-white to-ice-blue relative">
+<div class="max-w-2xl relative z-10">
+<span class="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-1.5 rounded-full font-bold text-sm mb-6 border border-primary/20">
+<span class="material-symbols-outlined text-sm">verified</span> Licensed &amp; Insured Professionals
+                    </span>
+<h2 class="font-heading text-4xl lg:text-6xl font-black leading-tight lg:leading-[1.1] mb-6 text-navy">
+                        RELIABLE HOME CARE <br/><span class="text-accent">YOU CAN TRUST.</span>
+</h2>
+<p class="text-lg lg:text-xl text-slate-600 mb-8 font-medium leading-relaxed">
+                        Dedicated service for homeowners 50+. We prioritize clear communication, prompt arrivals, and quality craftsmanship.
+                    </p>
+<div class="flex flex-col sm:flex-row gap-4">
+<button class="bg-navy text-white px-8 py-4 rounded-xl font-bold text-xl hover:bg-navy/90 btn-feedback touch-target">See Our Projects</button>
+<div class="flex items-center gap-4 lg:px-4 py-2 lg:py-0">
+<div class="flex -space-x-3">
+<div class="w-10 h-10 lg:w-12 lg:h-12 rounded-full border-4 border-white bg-slate-200 overflow-hidden" style="background-image: url('https://picsum.photos/seed/user1/100/100'); background-size: cover;"></div>
+<div class="w-10 h-10 lg:w-12 lg:h-12 rounded-full border-4 border-white bg-slate-200 overflow-hidden" style="background-image: url('https://picsum.photos/seed/user2/100/100'); background-size: cover;"></div>
+<div class="w-10 h-10 lg:w-12 lg:h-12 rounded-full border-4 border-white bg-slate-200 overflow-hidden" style="background-image: url('https://picsum.photos/seed/user3/100/100'); background-size: cover;"></div>
+</div>
+<div class="text-xs lg:text-sm font-bold">
+<div class="flex text-yellow-500">
+<span class="material-symbols-outlined text-base">star</span>
+<span class="material-symbols-outlined text-base">star</span>
+<span class="material-symbols-outlined text-base">star</span>
+<span class="material-symbols-outlined text-base">star</span>
+<span class="material-symbols-outlined text-base">star</span>
+</div>
+<span class="text-navy">5,000+ local families</span>
+</div>
+</div>
+</div>
+</div>
+<div class="absolute right-0 bottom-0 w-1/2 h-full opacity-5 lg:opacity-10 pointer-events-none hidden lg:block">
+<span class="material-symbols-outlined text-[400px]">handyman</span>
+</div>
+</section>
+<section class="col-span-12 lg:hidden">
+<div class="bento-card p-6 border-primary/20 bg-white">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-2">
+<span class="size-3 rounded-full bg-green-500 animate-pulse"></span>
+<span class="font-bold text-green-600 text-sm tracking-widest">WE ARE OPEN</span>
+</div>
+<a class="font-heading text-xl font-bold text-primary" href="tel:55501234567">(555) 012-3456</a>
+</div>
+<button class="w-full bg-primary text-white py-4 rounded-xl font-bold text-xl btn-feedback touch-target flex items-center justify-center gap-3">
+<span class="material-symbols-outlined">event_available</span>
+                        Schedule Visit
+                    </button>
+</div>
+</section>
+<div class="col-span-12 bento-card p-6 lg:p-8 bg-white">
+<h3 class="font-heading text-2xl font-bold mb-6 flex items-center gap-3 uppercase">
+<span class="material-symbols-outlined text-accent">speed</span> Quick Quote Wizard
+                </h3>
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 lg:gap-4">
+<button class="flex flex-col items-center justify-center p-4 lg:p-6 border-2 border-slate-100 rounded-2xl hover:border-primary hover:bg-primary/5 transition-all group btn-feedback touch-target">
+<span class="material-symbols-outlined text-3xl lg:text-4xl text-slate-400 group-hover:text-primary mb-2">ac_unit</span>
+<span class="font-bold text-sm lg:text-base text-slate-700">AC Repair</span>
+</button>
+<button class="flex flex-col items-center justify-center p-4 lg:p-6 border-2 border-slate-100 rounded-2xl hover:border-primary hover:bg-primary/5 transition-all group btn-feedback touch-target">
+<span class="material-symbols-outlined text-3xl lg:text-4xl text-slate-400 group-hover:text-primary mb-2">plumbing</span>
+<span class="font-bold text-sm lg:text-base text-slate-700">Plumbing</span>
+</button>
+<button class="flex flex-col items-center justify-center p-4 lg:p-6 border-2 border-slate-100 rounded-2xl hover:border-primary hover:bg-primary/5 transition-all group btn-feedback touch-target">
+<span class="material-symbols-outlined text-3xl lg:text-4xl text-slate-400 group-hover:text-primary mb-2">bolt</span>
+<span class="font-bold text-sm lg:text-base text-slate-700">Electrical</span>
+</button>
+<button class="flex flex-col items-center justify-center p-4 lg:p-6 border-2 border-slate-100 rounded-2xl hover:border-primary hover:bg-primary/5 transition-all group btn-feedback touch-target">
+<span class="material-symbols-outlined text-3xl lg:text-4xl text-slate-400 group-hover:text-primary mb-2">roofing</span>
+<span class="font-bold text-sm lg:text-base text-slate-700">Roofing</span>
+</button>
+<button class="flex flex-col items-center justify-center p-4 lg:p-6 border-2 border-slate-100 rounded-2xl hover:border-primary hover:bg-primary/5 transition-all group btn-feedback touch-target">
+<span class="material-symbols-outlined text-3xl lg:text-4xl text-slate-400 group-hover:text-primary mb-2">format_paint</span>
+<span class="font-bold text-sm lg:text-base text-slate-700">Painting</span>
+</button>
+<button class="flex flex-col items-center justify-center p-4 lg:p-6 border-2 border-slate-100 rounded-2xl hover:border-primary hover:bg-primary/5 transition-all group btn-feedback touch-target">
+<span class="material-symbols-outlined text-3xl lg:text-4xl text-slate-400 group-hover:text-primary mb-2">more_horiz</span>
+<span class="font-bold text-sm lg:text-base text-slate-700">Other</span>
+</button>
+</div>
+</div>
+<div class="col-span-12 grid grid-cols-1 lg:grid-cols-3 gap-6">
+<div class="bento-card p-8 bg-white">
+<div class="size-12 rounded-full bg-primary text-white flex items-center justify-center font-heading text-2xl font-bold mb-6">1</div>
+<h4 class="font-heading text-xl font-bold mb-3 uppercase tracking-wide">Free Consultation</h4>
+<p class="text-slate-600 leading-relaxed font-medium">Schedule a convenient time for us to visit your home and assess your project needs with no obligation.</p>
+</div>
+<div class="bento-card p-8 bg-white">
+<div class="size-12 rounded-full bg-primary text-white flex items-center justify-center font-heading text-2xl font-bold mb-6">2</div>
+<h4 class="font-heading text-xl font-bold mb-3 uppercase tracking-wide">Transparent Quote</h4>
+<p class="text-slate-600 leading-relaxed font-medium">Receive a detailed, flat-rate quote with no hidden fees or surprises. We explain every line item clearly.</p>
+</div>
+<div class="bento-card p-8 bg-white">
+<div class="size-12 rounded-full bg-primary text-white flex items-center justify-center font-heading text-2xl font-bold mb-6">3</div>
+<h4 class="font-heading text-xl font-bold mb-3 uppercase tracking-wide">Expert Execution</h4>
+<p class="text-slate-600 leading-relaxed font-medium">Our certified technicians complete the work to the highest standards, leaving your home spotless.</p>
+</div>
+</div>
+<section class="col-span-12 bento-card">
+<div class="grid grid-cols-1 lg:grid-cols-12">
+<div class="lg:col-span-4 bg-navy p-8 lg:p-10 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-white/10">
+<div>
+<h3 class="font-heading text-3xl font-bold text-white mb-8 uppercase">Our Legacy</h3>
+<div class="space-y-8">
+<div class="flex items-start gap-4">
+<div class="h-full w-1.5 bg-accent self-stretch"></div>
+<div>
+<p class="text-white font-heading text-5xl mb-1 leading-none">25+</p>
+<p class="text-slate-400 font-bold uppercase tracking-widest text-xs">Years of Excellence</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="h-full w-1.5 bg-accent self-stretch"></div>
+<div>
+<p class="text-white font-heading text-5xl mb-1 leading-none">12,450+</p>
+<p class="text-slate-400 font-bold uppercase tracking-widest text-xs">Jobs Completed</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="lg:col-span-8 p-8 lg:p-12 bg-white flex flex-col justify-center">
+<div class="flex items-center gap-6 mb-8">
+<div class="size-20 lg:size-24 rounded-full bg-slate-100 overflow-hidden border-2 border-primary/20" style="background-image: url('https://lh3.googleusercontent.com/d/14wSfEtkOPYqLPg-RuZnlm2Uy0gNNx6rf'); background-size: cover; background-position: center;"></div>
+<div>
+<h4 class="font-heading text-2xl font-bold text-navy uppercase">Arthur Miller</h4>
+<p class="text-primary font-bold">Founder &amp; Master Contractor</p>
+</div>
+</div>
+<blockquote class="text-xl lg:text-2xl font-medium text-slate-700 leading-relaxed mb-8 italic">
+                            "We built this company on the principle that honesty is the only way to do business. For over 25 years, our mission has been to provide our neighbors with reliable service."
+                        </blockquote>
+  <p class="text-slate-500 max-w-2xl" style="">
+                                South Comfort was started with a single truck and a commitment to treat every home like our own. Today, we're proud to be the region's most trusted name for senior-friendly home maintenance.
+                            </p>
+</div>
+</div>
+</section>
+<div class="col-span-12 lg:col-span-6 bento-card p-6 lg:p-8">
+<div class="flex items-center gap-2 mb-4">
+<div class="flex text-yellow-500">
+<span class="material-symbols-outlined text-sm">star</span>
+<span class="material-symbols-outlined text-sm">star</span>
+<span class="material-symbols-outlined text-sm">star</span>
+<span class="material-symbols-outlined text-sm">star</span>
+<span class="material-symbols-outlined text-sm">star</span>
+</div>
+</div>
+<p class="italic text-slate-700 font-medium text-lg mb-6 leading-relaxed">"They arrived exactly on time and explained everything in detail. Very respectful of my home."</p>
+<div class="flex items-center gap-3">
+<div class="size-12 rounded-full bg-primary/20 flex items-center justify-center font-bold text-primary">MS</div>
+<div>
+<p class="font-bold text-navy leading-none">Martha S.</p>
+<p class="text-sm text-slate-400">Verified Homeowner • 12 Years Client</p>
+</div>
+</div>
+</div>
+<div class="col-span-12 lg:col-span-6 bento-card p-6 lg:p-8">
+<div class="flex items-center gap-2 mb-4">
+<div class="flex text-yellow-500">
+<span class="material-symbols-outlined text-sm">star</span>
+<span class="material-symbols-outlined text-sm">star</span>
+<span class="material-symbols-outlined text-sm">star</span>
+<span class="material-symbols-outlined text-sm">star</span>
+<span class="material-symbols-outlined text-sm">star</span>
+</div>
+</div>
+<p class="italic text-slate-700 font-medium text-lg mb-6 leading-relaxed">"The technician was so patient with my questions about the thermostat. Highly recommend for seniors!"</p>
+<div class="flex items-center gap-3">
+<div class="size-12 rounded-full bg-primary/20 flex items-center justify-center font-bold text-primary">RJ</div>
+<div>
+<p class="font-bold text-navy leading-none">Robert J.</p>
+<p class="text-sm text-slate-400">Verified Homeowner • AC Repair</p>
+</div>
+</div>
+</div>
+<div class="col-span-12 bento-card lg:h-[300px] group relative min-h-[400px] lg:min-h-0">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('https://picsum.photos/seed/team/1200/600');"></div>
+<div class="absolute inset-0 bg-navy/80 lg:bg-gradient-to-r lg:from-navy lg:via-navy/60 lg:to-transparent p-8 lg:p-12 flex flex-col justify-center">
+<h3 class="font-heading text-3xl lg:text-4xl font-black text-white mb-4 uppercase">Meet Our Local Team of 40+ Certified Technicians</h3>
+<p class="text-white/80 text-lg font-medium max-w-md mb-8">
+                        Every team member is background-checked and certified to ensure your complete peace of mind.
+                    </p>
+<button class="bg-primary text-white px-8 py-4 rounded-xl font-bold hover:bg-primary/90 btn-feedback touch-target flex items-center gap-2 w-full lg:w-fit">
+<span class="material-symbols-outlined">groups</span>
+                        View Our Certifications
+                    </button>
+</div>
+</div>
+</div>
+  <section id="faq" class="mt12 py-12">
+            <h3 class="font-heading text-3xl lg:text-5xl font-bold text-navy mb-12 uppercase">Frequently Asked Questions</h3>
+            <div class="space-y-4 max-w-4xl">
+                <details class="group bento-card" open>
+                    <summary class="flex items-center justify-between p-6 lg:p-8 cursor-pointer hover:bg-slate-50 transition-colors">
+                        <span class="font-heading text-xl lg:text-2xl font-bold text-navy uppercase">How long does a typical AC repair take?</span>
+                        <span class="material-symbols-outlined group-open:rotate-180 transition-transform text-primary font-bold">expand_more</span>
+                    </summary>
+                    <div class="px-6 lg:px-8 pb-8 pt-2">
+                        <p class="text-slate-700 text-lg font-medium leading-relaxed">
+                            Most common repairs, such as capacitor replacements or refrigerant recharges, are completed within 1 to 2 hours. More complex issues involving motors or compressors may take 3 to 4 hours. Our technicians arrive with fully-stocked trucks to ensure most repairs are finished on the first visit.
+                        </p>
+                    </div>
+                </details>
+                <details class="group bento-card">
+                    <summary class="flex items-center justify-between p-6 lg:p-8 cursor-pointer hover:bg-slate-50 transition-colors">
+                        <span class="font-heading text-xl lg:text-2xl font-bold text-navy uppercase">Do you offer emergency after-hours service?</span>
+                        <span class="material-symbols-outlined group-open:rotate-180 transition-transform text-primary font-bold">expand_more</span>
+                    </summary>
+                    <div class="px-6 lg:px-8 pb-8 pt-2">
+                        <p class="text-slate-700 text-lg font-medium leading-relaxed">
+                            Yes, we offer 24/7 emergency services for critical failures. Members of our Pro-Care program receive priority dispatch with no additional emergency fees. For non-emergencies, we typically offer same or next-day scheduling.
+                        </p>
+                    </div>
+                </details>
+                <details class="group bento-card">
+                    <summary class="flex items-center justify-between p-6 lg:p-8 cursor-pointer hover:bg-slate-50 transition-colors">
+                        <span class="font-heading text-xl lg:text-2xl font-bold text-navy uppercase">Is my old AC unit worth repairing or should I replace?</span>
+                        <span class="material-symbols-outlined group-open:rotate-180 transition-transform text-primary font-bold">expand_more</span>
+                    </summary>
+                    <div class="px-6 lg:px-8 pb-8 pt-2">
+                        <p class="text-slate-700 text-lg font-medium leading-relaxed">
+                            We follow the "Rule of 5,000" — multiply the age of the unit by the repair cost. If it exceeds $5,000, we typically recommend a more energy-efficient replacement. However, we always provide an honest assessment of your unit's current condition and expected lifespan.
+                        </p>
+                    </div>
+                </details>
+            </div>
+        </section>
+</div>
+<aside class="utility-rail">
+<div class="flex flex-col gap-6">
+<div class="bento-card p-8 bg-white border-primary/20 shadow-xl shadow-primary/5">
+<h5 class="text-slate-400 font-bold uppercase tracking-widest text-[10px] mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">call</span> Direct Support Line
+                </h5>
+<a class="block text-center group" href="tel:55501234567">
+<p class="text-navy font-heading text-3xl mb-1 group-hover:text-primary transition-colors tracking-tight">(555) 012-3456</p>
+<p class="text-accent font-bold text-sm">Click to Call Now</p>
+</a>
+<div class="mt-8 space-y-4">
+<div class="flex items-center justify-between pb-4 border-b border-slate-50">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400">schedule</span>
+<span class="font-bold text-slate-700">Business Hours</span>
+</div>
+<span class="text-green-600 font-bold text-sm">OPEN</span>
+</div>
+<div class="text-sm space-y-2">
+<div class="flex justify-between text-slate-500 font-medium">
+<span>Mon - Fri</span>
+<span>7:00 AM - 9:00 PM</span>
+</div>
+<div class="flex justify-between text-slate-500 font-medium">
+<span>Sat - Sun</span>
+<span>8:00 AM - 5:00 PM</span>
+</div>
+</div>
+</div>
+<button class="w-full bg-primary text-white py-5 rounded-lg font-bold text-xl mt-8 shadow-lg shadow-primary/30 flex items-center justify-center gap-2 btn-feedback">
+<span class="material-symbols-outlined">event_available</span>
+                    Schedule Visit
+                </button>
+</div>
+<div class="bento-card p-6 bg-ice-blue border-ice-blue/50">
+<div class="flex items-center gap-4 mb-4">
+<div class="size-12 rounded-full bg-white flex items-center justify-center text-primary border border-primary/10">
+<span class="material-symbols-outlined">shield</span>
+</div>
+<div>
+<p class="font-bold text-navy leading-none">Emergency Service</p>
+<p class="text-xs font-medium text-slate-500 mt-1 uppercase">Available 24/7</p>
+</div>
+</div>
+<p class="text-sm text-slate-600 font-medium leading-relaxed">
+                    Priority dispatch for all active maintenance members.
+                </p>
+</div>
+</div>
+</aside>
+</main>
+<nav class="mobile-bottom-nav">
+<a class="flex flex-col items-center gap-1 flex-1 py-2 btn-feedback" href="tel:55501234567">
+<span class="material-symbols-outlined text-2xl">call</span>
+<span class="text-[10px] font-bold uppercase tracking-wider">Call Us</span>
+</a>
+<div class="w-px h-8 bg-white/20"></div>
+<a class="flex flex-col items-center gap-1 flex-1 py-2 btn-feedback" href="#">
+<span class="material-symbols-outlined text-2xl text-accent">bolt</span>
+<span class="text-[10px] font-bold uppercase tracking-wider">Get Price</span>
+</a>
+<div class="w-px h-8 bg-white/20"></div>
+<button class="flex flex-col items-center gap-1 flex-1 py-2 btn-feedback" onclick="openChatWidget()">
+<span class="material-symbols-outlined text-2xl">chat</span>
+<span class="text-[10px] font-bold uppercase tracking-wider">Text Us</span>
+</button>
+</nav>
+<footer class="bg-navy text-white mt-12 lg:mt-20 py-12 lg:py-20 px-6">
+<div class="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+<div class="lg:col-span-2">
+<div class="flex items-center gap-3 mb-6">
+<img src="https://lh3.googleusercontent.com/d/1M6VRz9XpHbFlNbLdU0Wf713WrhgL2U5t" alt="South Comfort Logo" class="h-12 w-auto object-contain" referrerPolicy="no-referrer" />
+</div>
+<p class="text-slate-400 max-w-sm font-medium leading-relaxed mb-8">
+                Providing expert home maintenance and repair services since 1998. Committed to honesty and superior quality for our community.
+            </p>
+<div class="flex gap-4">
+<a class="size-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors btn-feedback" href="#">
+<span class="material-symbols-outlined">public</span>
+</a>
+<a class="size-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors btn-feedback" href="#">
+<span class="material-symbols-outlined">thumb_up</span>
+</a>
+</div>
+</div>
+<div>
+<h4 class="font-bold text-lg mb-6 text-white uppercase tracking-widest font-heading">Popular Services</h4>
+<ul class="space-y-4 text-slate-400 font-medium">
+<li><a class="hover:text-primary transition-colors" href="#">Emergency Plumbing</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Electrical Inspections</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">HVAC Maintenance</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Safety Accessibility</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-lg mb-6 text-white uppercase tracking-widest font-heading">Safety &amp; Trust</h4>
+<ul class="space-y-4 text-slate-400 font-medium">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-accent text-sm">verified</span> Licensed #12345678</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-accent text-sm">shield</span> Fully Insured &amp; Bonded</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-accent text-sm">group</span> Background Checked Techs</li>
+</ul>
+</div>
+</div>
+<div class="max-w-[1440px] mx-auto mt-12 lg:mt-20 pt-8 border-t border-white/5 text-slate-500 text-sm font-medium flex flex-col lg:flex-row justify-between gap-4">
+<p>© 2024 South Comfort Services. All Rights Reserved. Serving the community since 1998.</p>
+<div class="flex gap-8">
+<a class="hover:text-white transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-white transition-colors" href="#">Terms of Service</a>
+</div>
+</div>
+</footer>
+
+<script>
+    // LeadConnector Widget Trigger Function
+    function openChatWidget() {
+        // Show the widget on mobile
+        document.body.classList.add('chat-active');
+
+        // Small delay to ensure display: block is applied before triggering the open action
+        setTimeout(() => {
+            if (window.lc_widget) {
+                if (typeof window.lc_widget.open === 'function') {
+                    window.lc_widget.open();
+                } else if (typeof window.lc_widget.show === 'function') {
+                    window.lc_widget.show();
+                }
+            } else {
+                const widgetButton = document.querySelector('.lc-widget-button');
+                if (widgetButton) {
+                    widgetButton.click();
+                } else {
+                    console.warn('Chat widget not loaded yet or API not found');
+                }
+            }
+        }, 100);
+    }
+
+    // Aggressive MutationObserver to hide the widget on mobile
+    const hideWidgetOnMobile = () => {
+        if (window.innerWidth >= 1024 || document.body.classList.contains('chat-active')) return;
+        
+        const selectors = [
+            '#chat-widget-container',
+            '.lc-widget-button',
+            '#lc-chat-widget',
+            'iframe[id*="chat-widget"]',
+            'iframe[src*="leadconnector"]',
+            'div[class*="chat-widget"]',
+            'div[id*="chat-widget"]',
+            '.chat-widget-wrapper',
+            '#chat-widget-wrapper'
+        ];
+        
+        selectors.forEach(selector => {
+            const elements = document.querySelectorAll(selector);
+            elements.forEach(el => {
+                el.style.setProperty('display', 'none', 'important');
+                el.style.setProperty('visibility', 'hidden', 'important');
+                el.style.setProperty('opacity', '0', 'important');
+                el.style.setProperty('pointer-events', 'none', 'important');
+                el.style.setProperty('position', 'fixed', 'important');
+                el.style.setProperty('bottom', '-1000px', 'important');
+                el.style.setProperty('right', '-1000px', 'important');
+                el.style.setProperty('z-index', '-9999', 'important');
+            });
+        });
+    };
+
+    // Initialize Observer
+    const observer = new MutationObserver(hideWidgetOnMobile);
+    observer.observe(document.body, { childList: true, subtree: true });
+    
+    // Check on resize
+    window.addEventListener('resize', hideWidgetOnMobile);
+    
+    // Initial check
+    hideWidgetOnMobile();
+
+    // Listen for close events from the widget iframe
+    window.addEventListener('message', (event) => {
+        try {
+            const data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
+            if (
+                data?.type === 'chat-widget-closed' || 
+                data?.action === 'close' || 
+                data?.event === 'close'
+            ) {
+                document.body.classList.remove('chat-active');
+                hideWidgetOnMobile();
+            }
+        } catch (e) {
+            if (typeof event.data === 'string' && event.data.includes('closed')) {
+                document.body.classList.remove('chat-active');
+                hideWidgetOnMobile();
+            }
+        }
+    });
+</script>
+</body>
+</html>
